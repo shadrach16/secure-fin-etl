@@ -38,17 +38,3 @@ Standard ETL tools often run sequentially. I engineered this bot to handle concu
 
 > **Impact:** This reduced the "End of Day" (EOD) data migration window from **4 hours to 45 minutes**, allowing Compliance Officers to start their work earlier every morning.
 
----
-
-## 📂 Repository Structure (The Bot)
-
-This repository focuses on the backend logic:
-
-```text
-├── etl_engine/
-│   ├── connectors/         # Custom drivers for Oracle, MSSQL, Mongo
-│   ├── transformers/       # Logic to clean currency, dates, and PII
-│   ├── loaders/            # Bulk insert logic for destination DB
-│   └── main_bot.py         # The entry point for the migration job
-└── utils/
-    └── encryption.py       # PII masking utilities
