@@ -15,8 +15,8 @@ In the banking sector, "Core Banking Applications" (like Finacle or Flexcube) ar
 **Secure Fin-ETL** is a custom-built Middleware designed to replace those expensive tools. It securely **Extracts** transaction logs, **Transforms** them into compliance-ready formats, and **Loads** them into our Fraud Detection Systems (iConcept4Pro).
 
 <div align="center">
-  <img src="./assets/architecture.png" alt="ETL Data Pipeline Architecture" width="800">
-  <p><em>Figure 1: High-Level Architecture of the Data Migration Pipeline</em></p>
+  <img src="./assets/2025-11-24 04_49_59-C__Users_HP_Desktop_secure-fin-etl_README.md (afro-ai, photo2calendar, campus ca.png" alt="ETL Data Pipeline Architecture" width="800">
+  <p><em>Figure 1: Data Migration Pipeline Connectors Configuration</em></p>
 </div>
 
 ---
