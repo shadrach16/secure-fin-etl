@@ -1,10 +1,10 @@
-# 🔄 Secure Fin-ETL: Banking Data Middleware
+# 🔄 Secure Fin-ETL: Banking Data Middleware (Automation Bot)
 
-![Status](https://img.shields.io/badge/Status-Production_Enterprise-success)
-![Type](https://img.shields.io/badge/Type-Data_Engineering_Pipeline-blue)
-![Stack](https://img.shields.io/badge/Stack-Python_|_Oracle_|_MSSQL_|_Mongo-orange)
+![Status](https://img.shields.io/badge/Status-Production_Engine-success)
+![Type](https://img.shields.io/badge/Type-Python_Automation_Script-blue)
+![Stack](https://img.shields.io/badge/Stack-Python_Multiprocessing_|_Oracle_|_Pandas-orange)
 
-> **⚠️ Portfolio Notice:** This repository is a technical overview of the **Secure ETL Middleware** developed for Adroit Consulting. The source code is proprietary. This document demonstrates my expertise in building high-volume data pipelines for financial institutions.
+> **⚠️ Source Code Notice:** This repository contains the **Core Python ETL Bot** (the migration engine). The associated React Dashboard and Django API orchestration layers are proprietary property of Adroit Consulting and are not included. This code demonstrates the **Data Engineering logic** used to move high-volume financial data.
 
 ---
 
@@ -14,67 +14,41 @@ In the banking sector, "Core Banking Applications" (like Finacle or Flexcube) ar
 
 **Secure Fin-ETL** is a custom-built Middleware designed to replace those expensive tools. It securely **Extracts** transaction logs, **Transforms** them into compliance-ready formats, and **Loads** them into our Fraud Detection Systems (iConcept4Pro).
 
-
-
-[Image of ETL data pipeline architecture diagram]
-
+<div align="center">
+  <img src="./assets/architecture.png" alt="ETL Data Pipeline Architecture" width="800">
+  <p><em>Figure 1: High-Level Architecture of the Data Migration Pipeline</em></p>
+</div>
 
 ---
 
 ## ⚡ Key Highlight: Parallel Data Migration Engine
 
-The core innovation of this software is its ability to handle **Heterogeneous Parallel Migrations**.
+The core innovation of this script is its ability to handle **Heterogeneous Parallel Migrations**.
 
-Standard ETL tools often run sequentially (Source A -> Dest A, then Source B -> Dest B). I engineered this system to handle concurrent data streams from completely different database technologies simultaneously without locking the production database.
+Standard ETL tools often run sequentially. I engineered this bot to handle concurrent data streams from completely different database technologies simultaneously without locking the production database.
 
-### How it Works
-1.  **Multi-Source Ingestion:** The system can open simultaneous connection pools to:
+### How the Script Works
+1.  **Multi-Source Ingestion:** The bot opens simultaneous connection pools to:
     * **Oracle DB** (Legacy Core Banking Data)
     * **MSSQL** (Card & ATM Transactions)
     * **MongoDB** (Unstructured App Logs)
     * **Flat Files** (CSV/Excel EOD Reports)
-2.  **Asynchronous Processing:** Using Python's multiprocessing capabilities, the system extracts data chunks from these sources in parallel threads.
-3.  **Unified Transformation Layer:** Regardless of the source (SQL or NoSQL), data is normalized into a standard Python object structure before being loaded into the destination.
+2.  **Asynchronous Processing:** Using Python's `multiprocessing` library, the script extracts data chunks from these sources in parallel threads.
+3.  **Unified Transformation Layer:** Regardless of the source (SQL or NoSQL), data is normalized into a standard Python dictionary structure before being loaded into the destination.
 
 > **Impact:** This reduced the "End of Day" (EOD) data migration window from **4 hours to 45 minutes**, allowing Compliance Officers to start their work earlier every morning.
 
 ---
 
-## 🛡️ System Features
+## 📂 Repository Structure (The Bot)
 
-### 1. Embedded Python Editor for Transformation
-* **Feature:** Integrated a code editor within the React dashboard.
-* **Utility:** Allows Senior Data Engineers to write custom Python transformation scripts (e.g., `def clean_currency(value): return ...`) directly in the UI to handle complex data edge cases without redeploying the software.
+This repository focuses on the backend logic:
 
-### 2. Real-Time Data Dashboard
-* **Frontend:** Built with `React.js`.
-* **Visuals:** Shows live progress bars for migration jobs, distinct row counts (Source vs. Destination), and error logs in real-time.
-
-### 3. Secure Transport
-* **Encryption:** Implements strict encryption for data in transit to ensure customer PII (Personally Identifiable Information) is never exposed during migration.
-
----
-
-## 🛠️ Tech Stack
-
-* **Frontend:** React.js (Dashboard & Monitoring).
-* **Backend Engine:** Python (Django & Pandas).
-* **Database Drivers:** `cx_Oracle` (Oracle), `pyodbc` (MSSQL), `pymongo` (MongoDB).
-* **Queue Management:** Redis & Celery (for managing job pipelines).
-
----
-
-## 👨‍💻 My Role
-
-As the **Lead Architect**, I was responsible for:
-1.  **Driver Optimization:** Tuning the Oracle and MSSQL database drivers to prevent timeouts during massive data fetches (1M+ rows).
-2.  **Algorithm Design:** Writing the logic that balances load across the server CPU cores during parallel processing.
-3.  **Cost Reduction:** This custom solution saved the company significant licensing fees by removing reliance on third-party enterprise ETL tools.
-
----
-
-## 📬 Contact
-
-**Tunde [Last Name]**
-*Senior Full Stack Developer & Data Engineer*
-[Link to LinkedIn] | [Link to Portfolio]
+```text
+├── etl_engine/
+│   ├── connectors/         # Custom drivers for Oracle, MSSQL, Mongo
+│   ├── transformers/       # Logic to clean currency, dates, and PII
+│   ├── loaders/            # Bulk insert logic for destination DB
+│   └── main_bot.py         # The entry point for the migration job
+└── utils/
+    └── encryption.py       # PII masking utilities
